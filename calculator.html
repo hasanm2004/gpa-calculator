@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GPA Calculator</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #0d0d0d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      border-bottom: 1px solid #222;
+    }
+    header h2 {
+      margin: 0;
+      font-size: 1.4rem;
+      color: #00b4ff;
+      letter-spacing: 0.5px;
+    }
+    header button {
+      background-color: #ff3b3b;
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+    header button:hover {
+      background-color: #d82828;
+    }
+    main {
+      padding: 30px 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #00b4ff;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      width: 80%;
+      max-width: 600px;
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #1e1e1e;
+    }
+    td input, td select {
+      background: #1e1e1e;
+      color: white;
+      border: none;
+      padding: 6px;
+      border-radius: 4px;
+    }
+    button.action {
+      background-color: #0078ff;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      margin: 10px 5px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+    button.action:hover {
+      background-color: #005fcc;
+    }
+    #result {
+      font-size: 1.5rem;
+      margin-top: 20px;
+      color: #00ffb3;
+    }
+    #controls {
+      margin-top: 15px;
+      display: none;
+    }
+    #controls button {
+      background-color: #333;
+      color: #00b4ff;
+    }
+    #controls button:hover {
+      background-color: #444;
+    }
+    #tip {
+      margin-top: 10px;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      font-size: 0.85rem;
+      color: #666;
+      border-top: 1px solid #222;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>🎓 GPA Calculator</h2>
+    <button onclick="logout()">Logout</button>
+  </header>
+
+  <main>
+    <h1>GPA Calculator</h1>
+    <table id="courseTable">
+      <tr>
+        <th>Course</th>
+        <th>Credit Hours</th>
+        <th>Grade</th>
+      </tr>
+      <tr>
+        <td><input type="text" placeholder="e.g. Math" /></td>
+        <td><input type="number" min="1" max="5" value="3" /></td>
+        <td>
+          <select>
+            <option value="4.0">A+</option>
+            <option value="4">A</option>
+            <option value="3.5">B+</option>
+            <option value="3">B</option>
+            <option value="2.5">C+</option>
+            <option value="2">C</option>
+            <option value="1">D</option>
+            <option value="0">F</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+    <button class="action" onclick="addRow()">Add Course</button>
+    <button class="action" onclick="calculateGPA()">Calculate GPA</button>
+
+    <div id="result"></div>
+    <div id="controls">
+      <button class="action" onclick="downloadReport()">📥 Download Report</button>
+      <button class="action" onclick="window.print()">🖨️ Print Report</button>
+    </div>
+
+    <div id="tip">💡 Tip: Click grade to change.</div>
+  </main>
+
+  <footer>© Hasan Mustafa — GPA Calculator v1.0</footer>
+
+  <script>
+    function addRow() {
+      const table = document.getElementById("courseTable");
+      const row = table.insertRow();
+      row.innerHTML = `
+        <td><input type="text" placeholder="e.g. Course" /></td>
+        <td><input type="number" min="1" max="5" value="3" /></td>
+        <td>
+          <select>
+            <option value="4.0">A+</option>
+            <option value="4">A</option>
+            <option value="3.5">B+</option>
+            <option value="3">B</option>
+            <option value="2.5">C+</option>
+            <option value="2">C</option>
+            <option value="1">D</option>
+            <option value="0">F</option>
+          </select>
+        </td>`;
+    }
+
+    function calculateGPA() {
+      const rows = document.querySelectorAll("#courseTable tr:not(:first-child)");
+      let totalPoints = 0;
+      let totalCredits = 0;
+
+      rows.forEach(row => {
+        const credit = parseFloat(row.cells[1].querySelector("input").value) || 0;
+        const grade = parseFloat(row.cells[2].querySelector("select").value);
+        totalPoints += grade * credit;
+        totalCredits += credit;
+      });
+
+      const gpa = totalCredits ? (totalPoints / totalCredits).toFixed(2) : 0;
+      document.getElementById("result").innerHTML = `Your GPA: <strong>${gpa}</strong>`;
+
+      // Show download & print buttons
+      document.getElementById("controls").style.display = "block";
+
+      // Save GPA for report download
+      window.currentGPA = gpa;
+    }
+
+    function downloadReport() {
+      const gpa = window.currentGPA || "0.00";
+      const text = `🎓 GPA Report\n\nCalculated GPA: ${gpa}\n\nGenerated by Hasan Mustafa — GPA Calculator v1.0`;
+      const blob = new Blob([text], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'GPA_Report.txt';
+      a.click();
+    }
+
+    function logout() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
+
+

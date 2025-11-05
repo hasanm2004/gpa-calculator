@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPA Pro — Student Portal</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-box {
+      background-color: #1a1a1a;
+      padding: 40px 50px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 180, 255, 0.3);
+      text-align: center;
+      width: 320px;
+    }
+    h1 {
+      color: #00b4ff;
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+    }
+    p {
+      color: #bbb;
+      font-size: 0.9rem;
+      margin-bottom: 30px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 6px;
+      background-color: #2a2a2a;
+      color: white;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-login {
+      background-color: #0078ff;
+      color: white;
+    }
+    .btn-login:hover {
+      background-color: #005fcc;
+    }
+    .btn-demo {
+      background-color: #333;
+      color: #00b4ff;
+      margin-top: 10px;
+    }
+    .btn-demo:hover {
+      background-color: #444;
+    }
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.8rem;
+      color: #777;
+      text-align: center;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <h1>🎓 GPA Pro — Student Portal</h1>
+    <p>Quick | Secure-looking demo — login to continue to the GPA Calculator.</p>
+
+    <input type="text" placeholder="Student ID or Email">
+    <input type="password" placeholder="Password">
+    <button class="btn-login" onclick="login()">Sign in</button>
+    <button class="btn-demo" onclick="openApp()">Open App (No Login)</button>
+  </div>
+
+  <footer>© Hasan Mustafa — GPA Calculator v1.0</footer>
+
+  <script>
+    function login() {
+      // Simple fake login - redirect to GPA calculator
+      window.location.href = "calculator.html";
+    }
+    function openApp() {
+      // Direct demo access
+      window.location.href = "calculator.html";
+    }
+  </script>
+
+</body>
+</html>
+
