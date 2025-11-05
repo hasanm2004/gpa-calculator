@@ -1,24 +1,36 @@
-# 🎓 GPA Calculator — Student Portal Style
+🎓 GPA Calculator — Student Portal Style
 
-A modern, dark-themed **GPA Calculator** made for students inspired by **NED / FAST** portal style.  
+A modern, dark-themed GPA Calculator made for the students in portal style.  
 It allows users to quickly calculate their semester GPA and download or print their report.
 
----
 
-## 🚀 Live Demo
-🔗 [View Project on GitHub Pages](https://yourusername.github.io/gpa-calculator/)
+ 🚀 Live Demo
+🔗 https://github.com/hasanm2004/gpa-calculator.git
 
-*(Replace `yourusername` with your actual GitHub username once Pages is enabled)*
+Features
+Easy-to-use GPA Calculator  
+Clean dark theme UI  
+Download / Print GPA Report  
+Fake login portal with “Open App (No Login)”  
+Front-end only (no database required)
 
----
+📂 Project Structure
+GPA-Calculator/
+├── index.html → Login / intro page
+├── calculator.html → Main GPA Calculator
+├── style.css (optional) → Custom CSS styling
+└── report.html (optional) → Download view
 
-## 🖤 Features
-- 🧮 Easy-to-use GPA Calculator  
-- 🌓 Clean dark theme UI  
-- 📥 Download / Print GPA Report  
-- 🔐 Fake login portal with “Open App (No Login)”  
-- ⚡ Front-end only (no database required)
+Technologies Used
+HTML5  
+CSS3  
+JavaScript (Vanilla JS)
 
----
 
-## 📂 Project Structure
+🧑‍💻 Developer by Hasan Mustafa  
+Front-end Developer & Student Project Enthusiast
+💬 www.linkedin.com/in/hasan-mustafa-javed-2ba8a2287
+
+License
+This project is open source and available under the [MIT License](LICENSE)
+
