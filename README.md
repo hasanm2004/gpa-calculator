@@ -31,6 +31,5 @@ JavaScript (Vanilla JS)
 Front-end Developer & Student Project Enthusiast
 💬 www.linkedin.com/in/hasan-mustafa-javed-2ba8a2287
 
-License
-This project is open source and available under the [MIT License](LICENSE)
+
 
